@@ -1,0 +1,29 @@
+{
+  "name": "github-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Selenium bot that creates a private GitHub repo and commits a README through the browser UI.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "spike": "tsx spike/spike.ts",
+    "test": "node --import tsx --test test/*.test.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.9.0",
+    "dotenv": "^16.4.5",
+    "picocolors": "^1.1.1",
+    "selenium-webdriver": "^4.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "@types/selenium-webdriver": "^4.1.27",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

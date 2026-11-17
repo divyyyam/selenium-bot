@@ -1,0 +1,13 @@
+node_modules
+.env
+dist/
+build/
+
+# Chrome persistent profile (holds the GitHub session)
+.chrome-profile/
+
+# Failure screenshots
+screenshots/*
+!screenshots/.gitkeep
+PRD.md 
+screenshots
