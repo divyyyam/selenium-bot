@@ -9,8 +9,8 @@
   },
   "scripts": {
     "start": "tsx src/index.ts",
-    "spike": "tsx spike/spike.ts",
     "test": "node --import tsx --test test/*.test.ts",
+    "test:e2e": "node --import tsx --test --test-concurrency=1 test/e2e/*.test.ts",
     "build": "tsc",
     "typecheck": "tsc --noEmit"
   },

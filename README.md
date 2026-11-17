@@ -55,3 +55,13 @@ npm start -- --cleanup                     # deletes every project-title-N repo
 - `src/utils/`: waits, prompts, terminal output and screenshots
 
 Run the unit tests with `npm test` and type-check with `npm run typecheck`.
+
+## End-to-end tests
+
+`npm run test:e2e` runs `test/e2e/lifecycle.test.ts`.
+
+- **CLI checks** always run and never open Chrome: `--help` output, an unknown flag, and missing credentials.
+- **Repository lifecycle** runs when `E2E=1` is set. It signs in, creates a private repo with a messy title, checks that the name is reported as taken, commits the README, confirms a signed-out browser gets a 404, and deletes the repo.
+- **Wrong password** runs only when `E2E_NEGATIVE=1` is also set.
+
+With `GITHUB_TOKEN` set, every step is also checked through the GitHub API, and repos left behind by a crashed run (private, named `e2e-…`, older than an hour) are deleted at the start. Each lifecycle step saves a screenshot to `screenshots/` named `e2e-<step>-pass` or `e2e-<step>-fail`.

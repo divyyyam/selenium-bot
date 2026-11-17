@@ -45,10 +45,18 @@ export class NewRepoPage {
 
   async setDescription(description: string): Promise<void> {
     const input = await waitVisible(this.driver, DESCRIPTION_INPUT);
-    for (let attempt = 0; attempt < 2; attempt++) {
-      await replaceText(input, description);
-      if ((await input.getAttribute('value')) === description) return;
-    }
+    await replaceText(input, description);
+    if ((await input.getAttribute('value')) === description) return;
+
+    await this.driver.executeScript(
+      `const [field, value] = arguments;
+       const setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(field), 'value').set;
+       setter.call(field, value);
+       field.dispatchEvent(new Event('input', { bubbles: true }));`,
+      input,
+      description,
+    );
+    if ((await input.getAttribute('value')) === description) return;
     throw new Error(`The description field holds "${await input.getAttribute('value')}", expected "${description}"`);
   }
 

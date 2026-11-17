@@ -11,6 +11,6 @@
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true
   },
-  "include": ["src/**/*.ts", "spike/**/*.ts", "test/**/*.ts"],
+  "include": ["src/**/*.ts", "test/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
